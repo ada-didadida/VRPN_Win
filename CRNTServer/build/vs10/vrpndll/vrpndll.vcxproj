@@ -1,0 +1,448 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{75337C6C-88B0-4FA6-8B5A-0DC10BF55E74}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>vrpndll</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v100</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v100</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v100</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v100</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)dll\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)obj\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)dll\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)obj\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)dll\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)obj\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)dll\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)obj\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;VRPNDLL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\quatlib;$(SolutionDir)src\submodules\hidapi\hidapi;$(SolutionDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <ImportLibrary>$(SolutionDir)dll\$(ProjectName)\$(PlatformTarget)\$(Configuration)\vrpndll.lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_WINDOWS;_USRDLL;VRPNDLL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\quatlib;$(SolutionDir)src\submodules\hidapi\hidapi;$(SolutionDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <ImportLibrary>$(SolutionDir)dll\$(ProjectName)\$(PlatformTarget)\$(Configuration)\vrpndll.lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;VRPNDLL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\quatlib;$(SolutionDir)src\submodules\hidapi\hidapi;$(SolutionDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ImportLibrary>$(SolutionDir)dll\$(ProjectName)\$(PlatformTarget)\$(Configuration)\vrpndll.lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_WINDOWS;_USRDLL;VRPNDLL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\quatlib;$(SolutionDir)src\submodules\hidapi\hidapi;$(SolutionDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ImportLibrary>$(SolutionDir)dll\$(ProjectName)\$(PlatformTarget)\$(Configuration)\vrpndll.lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\gpsnmealib\gpsnmealib.vcxproj">
+      <Project>{45ca531e-bb7b-4692-af45-5553611f61c2}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\quatlib\quatlib\quatlib.vcxproj">
+      <Project>{33559e87-22cc-4dfc-b506-1ebc6ade7063}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\vrpn\vrpn\vrpn.vcxproj">
+      <Project>{2ce51b1c-26c5-4191-ace2-6eae2ad50720}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_3DConnexion.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_3DMicroscribe.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_3Space.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_5DT16.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_ADBox.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Analog.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Analog_5dt.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Analog_5dtUSB.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Analog_Output.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Analog_Radamec_SPI.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Analog_USDigital_A2.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Assert.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Auxiliary_Logger.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_BaseClass.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_BiosciencesTools.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Button.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Button_NI_DIO24.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Button_USB.cpp" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_CerealBox.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_CHProducts_Controller_Raw.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Connection.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Contour.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_DevInput.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Dial.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_DirectXFFJoystick.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_DirectXRumblePad.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_DreamCheeky.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Dyna.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_EndpointContainer.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Event.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Event_Analog.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Event_Mouse.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_FileConnection.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_FileController.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Flock.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Flock_Parallel.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_ForceDevice.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_ForceDeviceServer.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Forwarder.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_ForwarderController.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Freespace.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_FunctionGenerator.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Futaba.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_GlobalHapticsOrb.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Griffin.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_HumanInterface.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_IDEA.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Imager.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Imager_Stream_Buffer.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_ImmersionBox.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_inertiamouse.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_JoyFly.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Joylin.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Joywin32.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Keyboard.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_LamportClock.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Laputa.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Local_HIDAPI.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Logitech_Controller_Raw.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_LUDL.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Magellan.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Microsoft_Controller_Raw.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Mouse.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Mutex.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_NationalInstruments.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Nidaq.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_nikon_controls.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_nVidia_shield_controller.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Oculus.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_OmegaTemperature.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Poser.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Poser_Analog.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Poser_Tek4662.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_raw_sgibox.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_RedundantTransmission.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Retrolink.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Saitek_Controller_Raw.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Serial.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_SerialPort.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_sgibox.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Shared.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_SharedObject.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Sound.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Spaceball.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Streaming_Arduino.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Text.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Thread.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tng3.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker_3DMouse.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker_AnalogFly.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker_ButtonFly.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker_Colibri.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker_Crossbow.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker_DTrack.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker_Fastrak.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker_Filter.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker_GameTrak.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker_GPS.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker_IMU.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker_isense.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker_Isotrak.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker_JsonNet.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker_Liberty.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker_LibertyHS.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker_MotionNode.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker_NDI_Polaris.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker_NovintFalcon.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker_OSVRHackerDevKit.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker_PDI.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker_PhaseSpace.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker_RazerHydra.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker_SpacePoint.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker_ThalmicLabsMyo.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker_TrivisioColibri.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker_ViewPoint.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker_WiimoteHead.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker_Wintracker.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Tracker_zSight.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_UNC_Joystick.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_VPJoystick.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Wanda.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_WiiMote.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_XInputGamepad.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Xkeys.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_YEI_3Space.C" />
+    <ClCompile Include="..\..\..\src\vrpn\vrpn_Zaber.C" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_3DConnexion.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_3DMicroscribe.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_3Space.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_5DT16.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_ADBox.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Analog.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Analog_5dt.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Analog_5dtUSB.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Analog_Output.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Analog_Radamec_SPI.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Analog_USDigital_A2.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Assert.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Auxiliary_Logger.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_BaseClass.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_BiosciencesTools.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Button.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Button_NI_DIO24.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Button_USB.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_CerealBox.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_CHProducts_Controller_Raw.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Configure.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Connection.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_ConnectionPtr.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Contour.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_DevInput.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Dial.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_DirectXFFJoystick.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_DirectXRumblePad.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_DreamCheeky.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Dyna.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_EndpointContainer.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Event.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Event_Analog.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Event_Mouse.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_FileConnection.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_FileController.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_FixedPoint.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Flock.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Flock_Parallel.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_ForceDevice.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_ForceDeviceServer.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Forwarder.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_ForwarderController.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Freespace.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_FunctionGenerator.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Futaba.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_GlobalHapticsOrb.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Griffin.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_HashST.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_HumanInterface.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_IDEA.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Imager.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Imager_Stream_Buffer.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_ImmersionBox.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_inertiamouse.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_JoyFly.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Joylin.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Joywin32.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Keyboard.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_LamportClock.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Laputa.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Log.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Logitech_Controller_Raw.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_LUDL.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Magellan.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_MainloopContainer.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_MainloopObject.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_MessageMacros.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Microsoft_Controller_Raw.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Mouse.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Mutex.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_NationalInstruments.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Nidaq.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_nikon_controls.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_nVidia_shield_controller.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Oculus.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_OmegaTemperature.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_OneEuroFilter.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_OwningPtr.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Poser.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Poser_Analog.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Poser_Tek4662.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_raw_sgibox.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_RedundantTransmission.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Retrolink.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Saitek_Controller_Raw.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_SendTextMessageStreamProxy.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Serial.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_SerialPort.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_sgibox.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Shared.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_SharedObject.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Sound.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Spaceball.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Streaming_Arduino.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Text.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Thread.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tng3.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker_3DMouse.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker_AnalogFly.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker_ButtonFly.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker_Colibri.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker_Crossbow.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker_DTrack.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker_Fastrak.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker_Filter.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker_GameTrak.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker_GPS.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker_IMU.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker_isense.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker_Isotrak.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker_JsonNet.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker_Liberty.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker_LibertyHS.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker_MotionNode.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker_NDI_Polaris.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker_NovintFalcon.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker_OSVRHackerDevKit.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker_PDI.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker_PhaseSpace.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker_RazerHydra.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker_SpacePoint.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker_ThalmicLabsMyo.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker_TrivisioColibri.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker_ViewPoint.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker_WiimoteHead.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker_Wintracker.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Tracker_zSight.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Types.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_UNC_Joystick.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_VPJoystick.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Wanda.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_WiiMote.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_WindowsH.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_XInputGamepad.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Xkeys.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_YEI_3Space.h" />
+    <ClInclude Include="..\..\..\src\vrpn\vrpn_Zaber.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
