@@ -112,7 +112,6 @@
 #include "vrpn_Xkeys.h"      // for vrpn_Xkeys_Desktop, etc
 #include "vrpn_YEI_3Space.h" // for vrpn_YEI_3Space_Sensor, etc
 #include "vrpn_Zaber.h"      // for vrpn_Zaber
-#include "vrpn_CRNT120_Tracker.h"
 
 class VRPN_API vrpn_Connection;
 
@@ -201,36 +200,6 @@ inline int vrpn_Generic_Server_Object::templated_setup_HID_device_name_only(
 // imports from main:  pch
 // returns nonzero on error
 
-int vrpn_Generic_Server_Object::setup_CRNT120_Tracker(char*& pch, char* line, FILE*)
-{
-	char s2[LINESIZE];
-	VRPN_CONFIG_NEXT();
-
-	// Get the arguments (class, mouse_name)
-	if (sscanf(pch, "%511s", s2) != 1) {
-		fprintf(stderr, "Bad vrpn_CRNT120_Tracker line: %s\n", line);
-		return -1;
-	}
-
-	// Open the box
-	if (verbose) {
-		printf("Opening vrpn_CRNT120_Tracker: %s\n", s2);
-	}
-
-	try {
-		_devices->add(new vrpn_CRNT120_Tracker(s2, connection));
-	}
-	catch (...) {
-		fprintf(stderr, "could not create vrpn_CRNT120_Tracker\n");
-#ifdef linux
-		fprintf(stderr, "- Is the GPM server running?\n");
-		fprintf(stderr,
-			"- Are you running on a linux console (not an xterm)?\n");
-#endif
-		return -1;
-	}
-	return 0;
-}
 
 int vrpn_Generic_Server_Object::setup_raw_SGIBox(char *&pch, char *line,
                                                  FILE * /*config_file*/)
@@ -5355,10 +5324,6 @@ vrpn_Generic_Server_Object::vrpn_Generic_Server_Object(
             // clause
             // in the batch has not been called do we continue looking.
             bool found_it_yet = true;
-			if(VRPN_ISIT("vrpn_CRNT120_Tracker"))
-			{
-				VRPN_CHECK(setup_CRNT120_Tracker);
-			}
 
             if (VRPN_ISIT("vrpn_raw_SGIBox")) {
                 VRPN_CHECK(setup_raw_SGIBox);

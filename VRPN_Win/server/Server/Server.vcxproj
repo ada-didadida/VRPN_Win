@@ -172,8 +172,6 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\server\UDPMulticastClient.cpp" />
-    <ClCompile Include="..\..\src\server\vrpn_CRNT120_Tracker.cpp" />
     <ClCompile Include="..\..\src\server\vrpn_Generic_server_object.C" />
     <ClCompile Include="Server.cpp" />
   </ItemGroup>
@@ -192,8 +190,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\server\UDPMulticastClient.h" />
-    <ClInclude Include="..\..\src\server\vrpn_CRNT120_Tracker.h" />
     <ClInclude Include="..\..\src\server\vrpn_Generic_server_object.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

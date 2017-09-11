@@ -48,7 +48,6 @@ protected:
 
     // Functions to parse each kind of device from the configuration file
     // and create a device of that type linked to the appropriate lists.
-	int setup_CRNT120_Tracker(char *&pch, char *line, FILE * /*config_file*/);
     int setup_raw_SGIBox(char *&pch, char *line, FILE * /*config_file*/);
     int setup_SGIBox(char *&pch, char *line, FILE * /*config_file*/);
     int setup_Tracker_AnalogFly(char *&pch, char *line, FILE *config_file);
