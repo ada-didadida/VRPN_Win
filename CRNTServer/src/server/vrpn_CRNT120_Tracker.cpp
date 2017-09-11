@@ -9,7 +9,7 @@ vrpn_CRNT120_Tracker::vrpn_CRNT120_Tracker(const char* name, vrpn_Connection* cx
 	,tracker_name_(name)
 {
 	//²»ÔÙÊä³ö"No response from server"
-	this->shutup = false;
+	this->shutup = true;
 }
 
 vrpn_CRNT120_Tracker::~vrpn_CRNT120_Tracker()
@@ -21,30 +21,6 @@ void vrpn_CRNT120_Tracker::mainloop()
 	vrpn_gettimeofday(&timestamp, nullptr);
 
 	auto crnt120_data = vrpn_Get_CRNT120_Data();
-
-	crnt120_data.rigidbody_num = 2;
-	crnt120_data.time_stamp = 1501213;
-	vrpn_CRNT120_Rigidbody_Data data;
-	data.rigidbody_id = 0;
-	data.rigidbody_position[0] = 1;
-	data.rigidbody_position[1] = 1;
-	data.rigidbody_position[2] = 1;
-	data.rigidbody_quaternion[0] = 2;
-	data.rigidbody_quaternion[1] = 2;
-	data.rigidbody_quaternion[2] = 2;
-	data.rigidbody_quaternion[3] = 2;
-	vrpn_CRNT120_Rigidbody_Data data_data;
-	data_data.rigidbody_id = 1;
-	data_data.rigidbody_position[0] = 3;
-	data_data.rigidbody_position[1] = 3;
-	data_data.rigidbody_position[2] = 3;
-	data_data.rigidbody_quaternion[0] = 4;
-	data_data.rigidbody_quaternion[1] = 4;
-	data_data.rigidbody_quaternion[2] = 4;
-	data_data.rigidbody_quaternion[3] = 4;
-
-	crnt120_data.rigidbody_data.push_back(data);
-	crnt120_data.rigidbody_data.push_back(data_data);
 
 	auto first = crnt120_data.rigidbody_data.begin();
 

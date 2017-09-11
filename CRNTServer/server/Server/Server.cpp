@@ -55,12 +55,12 @@ void Usage(const char *s)
 static volatile int done = 0; // Done and should exit?
 
 vrpn_Connection *connection;
-vrpn_Generic_Server_Object *generic_server = NULL;
+vrpn_Generic_Server_Object *generic_server = nullptr;
 
-static char *g_NICname = NULL;
+static char *g_NICname = nullptr;
 
-static const char *g_inLogName = NULL;
-static const char *g_outLogName = NULL;
+static const char *g_inLogName = nullptr;
+static const char *g_outLogName = nullptr;
 
 // TCH October 1998
 // Use Forwarder as remote-controlled multiple connections.
@@ -68,28 +68,28 @@ vrpn_Forwarder_Server *forwarderServer;
 
 static bool verbose = false;
 
-void shutDown(void)
+void shutDown()
 {
     if (verbose) {
         fprintf(stderr, "Deleting forwarder server\n");
     }
     if (forwarderServer) {
         delete forwarderServer;
-        forwarderServer = NULL;
+        forwarderServer = nullptr;
     }
     if (verbose) {
         fprintf(stderr, "Deleting generic server object...");
     }
     if (generic_server) {
         delete generic_server;
-        generic_server = NULL;
+        generic_server = nullptr;
     }
     if (verbose) {
         fprintf(stderr, "Deleting connection\n");
     }
     if (connection) {
         connection->removeReference();
-        connection = NULL;
+        connection = nullptr;
     }
     if (verbose) {
         fprintf(stderr, "Deleted server and connection, Exiting.\n");
@@ -141,8 +141,7 @@ int main(int argc, char *argv[])
     bool auto_quit = false;
     bool flush_continuously = false;
     int realparams = 0;
-    int i;
-    int port = vrpn_DEFAULT_LISTEN_PORT_NO;
+	int port = vrpn_DEFAULT_LISTEN_PORT_NO;
 #ifdef _WIN32
     // On Windows, the millisleep with 0 option frees up the CPU time slice for
     // other jobs
@@ -181,7 +180,7 @@ int main(int argc, char *argv[])
 #endif // not WIN32
 
     // Parse the command line
-    i = 1;
+    int i = 1;
     while (i < argc) {
         if (!strcmp(argv[i], "-f")) { // Specify config-file name
             if (++i > argc) {
@@ -268,7 +267,7 @@ int main(int argc, char *argv[])
     // Create the generic server object and make sure it is doing okay.
     generic_server = new vrpn_Generic_Server_Object(
         connection, config_file_name, verbose, bail_on_error);
-    if ((generic_server == NULL) || !generic_server->doing_okay()) {
+    if ((generic_server == nullptr) || !generic_server->doing_okay()) {
         fprintf(stderr, "Could not start generic server, exiting\n");
         shutDown();
     }
@@ -282,7 +281,7 @@ int main(int argc, char *argv[])
     if (auto_quit) {
         int dlc_m_id =
             connection->register_message_type(vrpn_dropped_last_connection);
-        connection->register_handler(dlc_m_id, handle_dlc, NULL);
+        connection->register_handler(dlc_m_id, handle_dlc, nullptr);
     }
 
     // ********************************************************************

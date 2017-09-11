@@ -142,7 +142,7 @@ void VRPN_CALLBACK handle_tracker_acc(void *userdata, const vrpn_TRACKERACCCB t)
 
 void VRPN_CALLBACK handle_button(void *userdata, const vrpn_BUTTONCB b)
 {
-	const char *name = (const char *)userdata;
+	const char *name = static_cast<const char *>(userdata);
 
 	printf("##########################################\r\n"
 		"Button %s, number %d was just %s\n"
@@ -153,11 +153,10 @@ void VRPN_CALLBACK handle_button(void *userdata, const vrpn_BUTTONCB b)
 void VRPN_CALLBACK
 handle_button_states(void *userdata, const vrpn_BUTTONSTATESCB b)
 {
-	const char *name = (const char *)userdata;
+	const char *name = static_cast<const char *>(userdata);
 
 	printf("Button %s has %d buttons with states:", name, b.num_buttons);
-	int i;
-	for (i = 0; i < b.num_buttons; i++) {
+	for (int i = 0; i < b.num_buttons; i++) {
 		printf(" %d", b.states[i]);
 	}
 	printf("\n");
@@ -165,11 +164,10 @@ handle_button_states(void *userdata, const vrpn_BUTTONSTATESCB b)
 
 void VRPN_CALLBACK handle_analog(void *userdata, const vrpn_ANALOGCB a)
 {
-	int i;
-	const char *name = (const char *)userdata;
+	const char *name = static_cast<const char *>(userdata);
 
 	printf("Analog %s:\n         %5.2f", name, a.channel[0]);
-	for (i = 1; i < a.num_channel; i++) {
+	for (int i = 1; i < a.num_channel; i++) {
 		printf(", %5.2f", a.channel[i]);
 	}
 	printf(" (%d chans)\n", a.num_channel);
@@ -177,14 +175,14 @@ void VRPN_CALLBACK handle_analog(void *userdata, const vrpn_ANALOGCB a)
 
 void VRPN_CALLBACK handle_dial(void *userdata, const vrpn_DIALCB d)
 {
-	const char *name = (const char *)userdata;
+	const char *name = static_cast<const char *>(userdata);
 
 	printf("Dial %s, number %d was moved by %5.2f\n", name, d.dial, d.change);
 }
 
 void VRPN_CALLBACK handle_text(void *userdata, const vrpn_TEXTCB t)
 {
-	const char *name = (const char *)userdata;
+	const char *name = static_cast<const char *>(userdata);
 
 	// Warnings and errors are printed by the system text printer.
 	if (t.type == vrpn_TEXT_NORMAL) {
@@ -240,12 +238,10 @@ int main(int argc, char *argv[])
 	device_info device_list[MAX_DEVICES];
 	unsigned num_devices = 0;
 
-	int i;
-
 	// Parse arguments, creating objects as we go.  Arguments that
 	// change the way a device is treated affect all devices that
 	// follow on the command line.
-	for (i = 1; i < argc; i++) {
+	for (int i = 1; i < argc; i++) {
 		if (!strcmp(argv[i], "-notracker")) {
 			print_for_tracker = 0;
 		}
@@ -273,7 +269,6 @@ int main(int argc, char *argv[])
 			tracker_stride = atoi(argv[i]);
 		}
 		else { // Create a device and connect to it.
-			device_info *dev;
 
 			// Make sure we have enough room for the new device
 			if (num_devices == MAX_DEVICES) {
@@ -282,22 +277,20 @@ int main(int argc, char *argv[])
 			}
 
 			// Name the device and open it as everything
-			dev = &device_list[num_devices];
+			device_info *dev = &device_list[num_devices];
 			dev->name = argv[i];
 			dev->tkr = new vrpn_Tracker_Remote(dev->name);
 			dev->ana = new vrpn_Analog_Remote(dev->name);
 			dev->btn = new vrpn_Button_Remote(dev->name);
 			dev->dial = new vrpn_Dial_Remote(dev->name);
 			dev->text = new vrpn_Text_Receiver(dev->name);
-			if ((dev->ana == NULL) || (dev->btn == NULL) ||
-				(dev->dial == NULL) || (dev->tkr == NULL) ||
-				(dev->text == NULL)) {
+			if ((dev->ana == nullptr) || (dev->btn == nullptr) ||
+				(dev->dial == nullptr) || (dev->tkr == nullptr) ||
+				(dev->text == nullptr)) {
 				fprintf(stderr, "Error opening %s\n", dev->name);
 				return -1;
 			}
-			else {
-				printf("Opened %s as:", dev->name);
-			}
+			printf("Opened %s as:", dev->name);
 
 			// If we are printing the tracker reports, prepare the
 			// user-data callbacks and hook them up to be called with
@@ -308,7 +301,7 @@ int main(int argc, char *argv[])
 				t_user_callback *tc2 = new t_user_callback;
 				t_user_callback *tc3 = new t_user_callback;
 
-				if ((tc1 == NULL) || (tc2 == NULL) || (tc3 == NULL)) {
+				if ((tc1 == nullptr) || (tc2 == nullptr) || (tc3 == nullptr)) {
 					fprintf(stderr, "Out of memory\n");
 				}
 				printf(" Tracker");
@@ -371,10 +364,8 @@ int main(int argc, char *argv[])
 	*/
 	printf("Press ^C to exit.\n");
 	while (!done) {
-		unsigned i;
-
 		// Let all the devices do their things
-		for (i = 0; i < num_devices; i++) {
+		for (unsigned i = 0; i < num_devices; i++) {
 			device_list[i].tkr->mainloop();
 			device_list[i].btn->mainloop();
 			device_list[i].ana->mainloop();
@@ -388,8 +379,7 @@ int main(int argc, char *argv[])
 
 	// Delete all devices.
 	{
-		unsigned i;
-		for (i = 0; i < num_devices; i++) {
+		for (unsigned i = 0; i < num_devices; i++) {
 			delete device_list[i].tkr;
 			delete device_list[i].btn;
 			delete device_list[i].ana;
